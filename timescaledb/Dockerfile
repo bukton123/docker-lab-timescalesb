@@ -1,4 +1,5 @@
-FROM timescale/timescaledb:latest-pg11
+FROM timescale/timescaledb:1.7.4-pg11
+#FROM timescale/timescaledb-postgis:12.1.0-pg1
 
 LABEL MAINTAINER BukTon
 
@@ -16,6 +17,7 @@ RUN apk update && apk --no-cache add gcc g++ libpq linux-headers curl
 RUN pip3 install --upgrade pi
 
 # install patroni
+RUN pip install psycopg2
 RUN pip install patroni
 RUN pip install python-etcd
 RUN ln -s /usr/local/bin/pg_* /usr/sbin/
